@@ -141,6 +141,7 @@ def write_index(outfile, title, logfiles, searchbox=False, latest_log_link=None)
 </head>
 <body>""" % {'VERSION': VERSION, 'RELEASE': RELEASE,
              'title': escape(title), 'charset': 'UTF-8'}, file=outfile)
+    print('<p>[Back to <a href="/" title="IRC logs">IRC logs]</a></p>', file=outfile)
     print('<h1>%s</h1>' % escape(title), file=outfile)
     if searchbox:
         print("""

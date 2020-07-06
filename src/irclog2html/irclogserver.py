@@ -85,7 +85,8 @@ class Channel(object):
         return datetime.timedelta(seconds=time.time() - self.mtime)
 
 
-def find_channels(path):
+def find_channels(path, stream):
+    print("<h2>Channels</h2>", file=stream)
     return sorted([
         Channel(name, path) for name in os.listdir(path)
         if not name.startswith('.') and os.path.isdir(os.path.join(path, name))
@@ -96,7 +97,7 @@ def dir_listing(stream, path):
     """Primitive listing of subdirectories."""
     print(HEADER, file=stream)
     print(u"<h1>IRC logs</h1>", file=stream)
-    channels = find_channels(path)
+    channels = find_channels(path, stream)
     old, new = [], []
     for channel in channels:
         if channel.age > datetime.timedelta(days=7):
